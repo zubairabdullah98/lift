@@ -1,0 +1,179 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Dashboard Title -->
+<h1 class="text-3xl font-bold text-gray-800 mb-6">Admin Dashboard</h1>
+
+<!-- Stat Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Total Users -->
+    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-semibold">Total Users</h2>
+                <p class="text-3xl font-bold count-up" data-target="{{ user_count }}">0</p>
+            </div>
+            <div class="text-4xl">👥</div>
+        </div>
+    </div>
+
+    <!-- Total Jobs -->
+    <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-semibold">Total Jobs</h2>
+                <p class="text-3xl font-bold count-up" data-target="{{ job_count }}">0</p>
+            </div>
+            <div class="text-4xl">💼</div>
+        </div>
+    </div>
+
+    <!-- Total NGOs -->
+    <div class="bg-gradient-to-r from-purple-500 to-fuchsia-600 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-semibold">Total NGOs</h2>
+                <p class="text-3xl font-bold count-up" data-target="{{ ngo_count }}">0</p>
+            </div>
+            <div class="text-4xl">🏢</div>
+        </div>
+    </div>
+
+    <!-- Total Donations -->
+    <div class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-semibold">Total Donations</h2>
+                <p class="text-3xl font-bold count-up" data-target="{{ total_donations|round(0, 'floor') }}">0</p>
+            </div>
+            <div class="text-4xl">💰</div>
+        </div>
+    </div>
+
+    <!-- Matches Run -->
+    <div class="bg-gradient-to-r from-red-500 to-rose-600 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-semibold">Matches Run</h2>
+                <p class="text-3xl font-bold count-up" data-target="{{ match_count }}">0</p>
+            </div>
+            <div class="text-4xl">⚙️</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Count-Up Animation Script -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".count-up");
+    const speed = 50;
+
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute("data-target");
+            const count = +counter.innerText;
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = target.toLocaleString();
+            }
+        };
+        updateCount();
+    });
+});
+</script>
+
+<!-- Donations Chart -->
+<div class="bg-white rounded-lg p-6 shadow-md mb-10">
+    <h2 class="text-xl font-semibold mb-4">Monthly Donations</h2>
+    <canvas id="donationChart" height="120"></canvas>
+</div>
+
+<!-- Recent Users & Donations -->
+<div class="grid md:grid-cols-2 gap-6 mb-10">
+    <div class="bg-white rounded-lg shadow-md p-4">
+        <h2 class="text-lg font-semibold mb-2">Recent Users</h2>
+        <ul class="text-sm divide-y">
+            {% for user in recent_users %}
+                <li class="py-2">{{ user.name }} — {{ user.email }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-4">
+        <h2 class="text-lg font-semibold mb-2">Recent Donations</h2>
+        <ul class="text-sm divide-y">
+            {% for donation in recent_donations %}
+                <li class="py-2">{{ donation.donor_name }}: ${{ donation.amount }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Map Section (Static UI) -->
+<div class="bg-white rounded-lg shadow-md p-6 mb-10">
+    <h2 class="text-xl font-semibold mb-4">NGO & Job Locations Map</h2>
+    <div class="w-full h-72 bg-gray-300 flex items-center justify-center text-gray-700">
+        <p>🗺️ Interactive Map Coming Soon...</p>
+    </div>
+</div>
+
+<!-- JS: Count-Up Animation -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".count-up");
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute("data-target");
+            const count = +counter.innerText;
+            const increment = target / 50;
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = target.toLocaleString();
+            }
+        };
+        updateCount();
+    });
+});
+</script>
+
+<!-- JS: Chart.js CDN + Donations Line Chart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('donationChart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{ chart_labels | safe }},
+        datasets: [{
+            label: 'Donations ($)',
+            data: {{ chart_data | safe }},
+            fill: true,
+            borderColor: '#10B981',
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: true } },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: { callback: value => '$' + value }
+            }
+        }
+    }
+});
+</script>
+
+{% endblock %}

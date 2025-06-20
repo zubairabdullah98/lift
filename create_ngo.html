@@ -1,0 +1,72 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+<style>
+
+    .overlay {
+        background: rgba(0, 0, 0, 0.5);
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 12px;
+        padding: 30px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .glass-card h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    label {
+        color: #f1f1f1;
+    }
+</style>
+
+<div class="overlay">
+    <div class="glass-card">
+        <h2>Register Your NGO</h2>
+        <form method="POST" action="/create-ngo" class="space-y-4">
+            <div>
+                <label for="name">NGO Name</label>
+                <input id="name" type="text" name="name" required
+                       class="w-full p-2 rounded bg-white bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+
+            <div>
+                <label for="mission">Mission</label>
+                <input id="mission" type="text" name="mission" required
+                       class="w-full p-2 rounded bg-white bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+
+            <div>
+                <label for="location">Location</label>
+                <input id="location" type="text" name="location" required
+                       class="w-full p-2 rounded bg-white bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+
+            <div>
+                <label for="contact">Contact</label>
+                <input id="contact" type="text" name="contact"
+                       class="w-full p-2 rounded bg-white bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded shadow">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

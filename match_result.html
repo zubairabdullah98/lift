@@ -1,0 +1,16 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+<div class="max-w-xl mx-auto mt-10 p-4 bg-white rounded shadow">
+    <h2 class="text-xl font-semibold mb-4">Match Result</h2>
+    <p><strong>User:</strong> {{ user.name }} ({{ user.skills }})</p>
+    <p><strong>Job:</strong> {{ job.title }} - {{ job.description }}</p>
+    <hr class="my-4">
+    <p class="text-lg font-medium">💡 Match Output:</p>
+    <div class="p-3 bg-gray-100 rounded mt-2">
+        {{ result }}
+    </div>
+    <a href="/" class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Back to Home</a>
+</div>
+{% endblock %}

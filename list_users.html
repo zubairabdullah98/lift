@@ -1,0 +1,13 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">All Users</h2>
+<ul class="space-y-2">
+    {% for user in users %}
+    <li class="p-2 bg-gray-100 rounded shadow">
+        <strong>{{ user.name }}</strong> – {{ user.email }} – {{ user.skills }} – {{ user.location }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

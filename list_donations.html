@@ -1,0 +1,15 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">All Donations</h2>
+<ul class="space-y-2">
+    {% for donation in donations %}
+        <li class="p-2 border rounded shadow">
+            <strong>{{ donation.donor_name }}</strong> donated ${{ donation.amount }} — {{ donation.donor_email }}
+        </li>
+    {% else %}
+        <li>No donations yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

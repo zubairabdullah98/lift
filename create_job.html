@@ -1,0 +1,15 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="max-w-md mx-auto mt-10">
+    <h2 class="text-2xl font-semibold mb-4">Create Job</h2>
+    <form method="POST" action="/create-job" class="space-y-4">
+        <input name="title" placeholder="Job Title" class="w-full border px-3 py-2 rounded" required>
+        <input name="description" placeholder="Job Description" class="w-full border px-3 py-2 rounded" required>
+        <input name="location" placeholder="Location" class="w-full border px-3 py-2 rounded" required>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Create Job</button>
+    </form>
+</div>
+{% endblock %}

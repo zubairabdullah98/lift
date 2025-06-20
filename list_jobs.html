@@ -1,0 +1,13 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">All Jobs</h2>
+<ul class="space-y-2">
+    {% for job in jobs %}
+    <li class="p-2 bg-gray-100 rounded shadow">
+        <strong>{{ job.title }}</strong> – {{ job.description }} – {{ job.location }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

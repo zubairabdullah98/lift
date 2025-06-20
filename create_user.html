@@ -1,0 +1,15 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+<div class="max-w-md mx-auto mt-10">
+    <h2 class="text-2xl font-semibold mb-4">Register User</h2>
+    <form method="POST" action="/create-user" class="space-y-4">
+        <input name="name" placeholder="Full Name" class="w-full border px-3 py-2 rounded" required>
+        <input name="email" placeholder="Email" type="email" class="w-full border px-3 py-2 rounded" required>
+        <input name="skills" placeholder="Skills (comma separated)" class="w-full border px-3 py-2 rounded" required>
+        <input name="location" placeholder="Location" class="w-full border px-3 py-2 rounded" required>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Create User</button>
+    </form>
+</div>
+{% endblock %}

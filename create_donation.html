@@ -1,0 +1,13 @@
+<!-- © 2025 Zubair Abdullah Sadiq. All rights reserved. -->
+
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Make a Donation</h2>
+<form method="POST" action="/create-donation" class="space-y-4">
+    <input type="text" name="donor_phone" required>
+    <input type="text" name="donor_name" placeholder="Your Name" class="w-full p-2 border rounded" required>
+    <input type="email" name="donor_email" placeholder="Your Email" class="w-full p-2 border rounded" required>
+    <input type="number" name="amount" placeholder="Amount (USD)" class="w-full p-2 border rounded" required>
+    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Donate</button>
+</form>
+{% endblock %}
