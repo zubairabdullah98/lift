@@ -1,6 +1,11 @@
-# LIFT – Linking Individuals For Transformation
+# LIFT
 
-**© 2025 Zubair Abdullah Sadiq – All Rights Reserved**
+> Created by **Zubair Abdullah Sadiq**  
+> © 2025 – All rights reserved under MIT License
+
+LIFT MVP is a humanitarian platform that connects users with job opportunities, donations, NGOs, and learning tools using SMS & WhatsApp. Designed for underserved people with low internet access.
+
+# LIFT – Linking Individuals For Transformation
 
 LIFT is an innovative, humanitarian tech platform designed to bridge the gap between skilled individuals and life-changing opportunities — especially for those without access to smartphones or the internet.
 
