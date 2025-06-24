@@ -55,7 +55,7 @@ View full license in [`LICENSE`](./LICENSE).
 ## 🧠 About the Developer
 
 **Zubair Abdullah Sadiq** is a self-taught software developer from humble beginnings, driven by the belief that technology should serve humanity. With nothing but a bold idea and an unshakable vision, he builds solutions to uplift underserved communities and connect millions to life-changing opportunities.
-> 💌 Contact: zubairabdullah415@gmail.com
+> 💌 Contact: liftmvp.official@gmail.com
 
 ---
 
